@@ -2,6 +2,7 @@
 
 import datetime
 import random
-somedate=datetime.date(1980,01,01)
+from random import randint
+somedate=datetime.date(randint(1945,2015),randint(1,12),randint(1,28))
 date=somedate+datetime.timedelta(random.randint(1,365))
 print date
