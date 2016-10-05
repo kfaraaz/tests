@@ -42,31 +42,33 @@ def genVaryingLengthString():
 
 
 def getRandomUSAState():
-    state = random.sample(['AZ',
-                           'CA',
-                           'AR',
-                           'OR',
-                           'MI',
-                           'CT',
-                           'KS',
-                           'UT',
-                           'TX',
-                           'IL',
-                           'WA',
-                           'OH',
-                           'ID',
-                           'WI',
-                           'PA',
-                           'MA',
-                           'NY',
-                           'CO'],
+    state = random.sample(['AL', 'AK', 'DE', 'FL', 'GA', 'HI', 'AZ',
+                           'CA', 'AR', 'OR', 'IN', 'IA', 'MI', 'CT',
+                           'KS', 'KY', 'UT', 'LA', 'TX', 'TN', 'IL',
+                           'WA', 'VA', 'WV', 'OH', 'NV', 'NH', 'NJ',
+                           'NM', 'NC', 'ND', 'NE', 'ID', 'OK', 'SC',
+                           'SD', 'WI', 'WY', 'PA', 'RI', 'MA', 'MN',
+                           'MO', 'MT', 'NY', 'CO'],
                           1)
     return state[0]
 
 
+def genDuration():
+    return 'P' + str(randint(1,
+                             30)) + 'Y' + str(randint(1,
+                                                      12)) + 'M' + str(randint(1,
+                                                                               31)) + 'D' + 'T' + str(randint(1,
+
+                                                                                                              12)) + 'H' + str(randint(1,
+
+                                                                                                                                       59)) + 'M' + str(randint(1,
+
+                                                                                                                                                                59)) + 'S'
+
+
 def writeDataToFile():
     with open('/root/datetime_data/typeall.csv', 'a') as f:
-        # (ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION)
+        # (ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION, durtn INTERVAL)
         f.write(str(random.randint(1, 65000)) +
                 ',' +
                 str(getRandomUSAState()) +
@@ -84,6 +86,8 @@ def writeDataToFile():
                 genTime() +
                 ',' +
                 str(random.uniform(1, 100)) +
+                ',' +
+                str(genDuration()) +
                 '\n')
 
 
