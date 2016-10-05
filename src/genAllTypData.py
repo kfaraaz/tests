@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 # Generates random data and writes it to a CSV file
 # Data is written in the below format to the CSV file
 # ( ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION )
@@ -63,7 +65,7 @@ def getRandomUSAState():
 
 
 def writeDataToFile():
-    with open('/root/datetime_data/typeall.csv', 'w') as f:
+    with open('/root/datetime_data/typeall.csv', 'a') as f:
         # (ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION)
         f.write(str(random.randint(1, 65000)) +
                 ',' +
@@ -85,8 +87,6 @@ def writeDataToFile():
                 '\n')
 
 
-if __name__ == '__main__':
-    # execute only if run as a script
-    def main():
-        for i in range(1, 100):
-            writeDataToFile()
+if __name__ == "__main__":
+    for i in range(1, 100):
+        writeDataToFile()
