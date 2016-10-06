@@ -2,7 +2,7 @@
 
 # Generates random data and writes it to a CSV file
 # Data is written in the below format to the CSV file
-# ( ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION )
+# ( ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION, durn INTERVAL )
 
 import datetime
 import random
@@ -13,6 +13,9 @@ from random import randint
 
 
 def genDate():
+    """ Returns a random date value in YYYY-MM-DD format
+    Note that the day value will always be <= 28
+    """
     rndmdate = datetime.date(
         randint(
             1940, 2015), randint(
@@ -23,6 +26,7 @@ def genDate():
 
 
 def genTime():
+    """ Returns a random time value in HH:MM:SS format """
     HH = random.choice(range(1, 23))
     MM = random.choice(range(1, 59))
     SS = random.choice(range(1, 59))
@@ -30,6 +34,9 @@ def genTime():
 
 
 def genVaryingLengthString():
+    """ Returns a random variable length string of alpha numeric characters
+    length of the random string could range from 1 - 256 characters
+    """
     return ''.join(
         [
             random.choice(
@@ -42,6 +49,7 @@ def genVaryingLengthString():
 
 
 def getRandomUSAState():
+    """ Returns a random USA state """
     state = random.sample(['AL', 'AK', 'DE', 'FL', 'GA', 'HI', 'AZ',
                            'CA', 'AR', 'OR', 'IN', 'IA', 'MI', 'CT',
                            'KS', 'KY', 'UT', 'LA', 'TX', 'TN', 'IL',
@@ -50,32 +58,30 @@ def getRandomUSAState():
                            'SD', 'WI', 'WY', 'PA', 'RI', 'MA', 'MN',
                            'MO', 'MT', 'NY', 'CO'],
                           1)
-    return state[0]
+    return str(state[0])
 
 
 def genDuration():
-    return 'P' + str(randint(1,
-                             30)) + 'Y' + str(randint(1,
-                                                      12)) + 'M' + str(randint(1,
-                                                                               31)) + 'D' + 'T' + str(randint(1,
-
-                                                                                                              12)) + 'H' + str(randint(1,
-
-                                                                                                                                       59)) + 'M' + str(randint(1,
-
-                                                                                                                                                                59)) + 'S'
+    """ Returns a random duration value in ISO 8601 format """
+    return 'P' + str(randint(1, 30)) + \
+        'Y' + str(randint(1, 12)) + \
+        'M' + str(randint(1, 31)) + \
+        'D' + \
+        'T' + str(randint(1, 12)) + \
+        'H' + str(randint(1, 59)) + \
+        'M' + str(randint(1, 59)) + \
+        'S'
 
 
 def writeDataToFile():
     with open('/root/datetime_data/typeall.csv', 'a') as f:
-        # (ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION, durtn INTERVAL)
         f.write(str(random.randint(1, 65000)) +
                 ',' +
-                str(getRandomUSAState()) +
+                getRandomUSAState() +
                 ',' +
                 str(names.get_full_name()) +
                 ',' +
-                str(genVaryingLengthString()) +
+                genVaryingLengthString() +
                 ',' +
                 genDate() +
                 ',' +
