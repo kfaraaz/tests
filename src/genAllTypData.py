@@ -54,7 +54,7 @@ def genVaryingLengthString():
                     256))])
 
 
-def getRandomUSAState():
+def genRandomUSAState():
     """ Returns a random USA state """
     state = random.sample(['AL', 'AK', 'DE', 'FL', 'GA', 'HI', 'AZ',
                            'CA', 'AR', 'OR', 'IN', 'IA', 'MI', 'CT',
@@ -84,13 +84,28 @@ def genBoolean():
     return random.choice([str('true'), str('false')])
 
 
+def genName():
+    """ Returns a random name """
+    return str(names.get_full_name())
+
+
+def genFloat():
+    """ Returns a random floating point number """
+    return str(random.uniform(1, 100))
+
+
+def genTimestamp():
+    """ Returns a timestamp value """
+    return genDate() + ' ' + genTime()
+
+
 def writeDataToFile():
     with open('/root/datetime_data/typeall.csv', 'a') as f:
         f.write(str(random.randint(1, 65000)) +
                 ',' +
-                getRandomUSAState() +
+                genRandomUSAState() +
                 ',' +
-                str(names.get_full_name()) +
+                genName() +
                 ',' +
                 genVaryingLengthString() +
                 ',' +
@@ -98,11 +113,9 @@ def writeDataToFile():
                 ',' +
                 genTime() +
                 ',' +
-                genDate() +
-                ' ' +
-                genTime() +
+                genTimestamp() +
                 ',' +
-                str(random.uniform(1, 100)) +
+                genFloat() +
                 ',' +
                 str(genDuration()) +
                 ',' +
