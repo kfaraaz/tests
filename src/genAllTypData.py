@@ -1,8 +1,14 @@
 #!/usr/bin/python
 
-# Generates random data and writes it to a CSV file
-# Data is written in the below format to the CSV file
-# ( ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION, durn INTERVAL )
+# Generates random data and writes it to a CSV file in the below format.
+# ( ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION, durn INTERVAL, bln BOOLEAN )
+
+# Pre-requisites
+# Python names module is required to generate random names.
+# To install names with pip, sudo pip install names
+
+# To run this script, run the below command
+# python genAllTypData.py
 
 import datetime
 import random
@@ -73,6 +79,11 @@ def genDuration():
         'S'
 
 
+def genBoolean():
+    """ Returns a random boolean values, either true or false."""
+    return random.choice([str('true'), str('false')])
+
+
 def writeDataToFile():
     with open('/root/datetime_data/typeall.csv', 'a') as f:
         f.write(str(random.randint(1, 65000)) +
@@ -94,6 +105,8 @@ def writeDataToFile():
                 str(random.uniform(1, 100)) +
                 ',' +
                 str(genDuration()) +
+                ',' +
+                genBoolean() +
                 '\n')
 
 
