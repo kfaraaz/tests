@@ -22,11 +22,10 @@ def genDate():
     """ Returns a random date value in YYYY-MM-DD format
     Note that the day value will always be <= 28
     """
-    rndmdate = datetime.date(
-        randint(
-            1940, 2015), randint(
-            1, 12), randint(
-                1, 28))
+    yr = randint(1940, 2015)
+    month = randint(1, 12)
+    day = randint(1, 28)
+    rndmdate = datetime.date(yr, month, day)
     date = rndmdate + datetime.timedelta(random.randint(1, 365))
     return str(date)
 
@@ -124,5 +123,5 @@ def writeDataToFile():
 
 
 if __name__ == "__main__":
-    for i in range(1, 100):
+    for i in xrange(1, 100):
         writeDataToFile()
