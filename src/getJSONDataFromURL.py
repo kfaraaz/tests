@@ -9,8 +9,16 @@ from urllib import urlopen
 
 def getJSONDataFromURL():
     """ Read JSON data from URL and write it to a file"""
-    parser = argparse.ArgumentParser(description='This script takes a URL as an input')
-    parser.add_argument('-u','--ur',action='store',dest='url',default=None,help='<Required> url link',required=True)
+    parser = argparse.ArgumentParser(
+        description='This script takes a URL as an input')
+    parser.add_argument(
+        '-u',
+        '--ur',
+        action='store',
+        dest='url',
+        default=None,
+        help='<Required> url link',
+        required=True)
     results = parser.parse_args()
     url = results.url
     u = urlopen(url)
