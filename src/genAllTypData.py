@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 # Generates random data and writes it to a CSV file in the below format.
-# ( ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION, durn INTERVAL, bln BOOLEAN )
+# ( ID(INTEGER), STATE CHAR(2), NAME VARCHAR(200), COMMENTS VARCHAR(257), dt DATE, tm TIME, tmstmp TIMESTAMP, dbl DOUBLE PRECISION, durn1 INTERVAL YEAR, durn2 INTERVAL DAY, bln BOOLEAN )
 
 # Pre-requisites
 # Python names module is required to generate random names.
@@ -50,7 +50,7 @@ def genVaryingLengthString():
                 string.ascii_lowercase) for i in range(
                 random.randint(
                     1,
-                    256))])
+                    255))])
 
 
 def genRandomUSAState():
@@ -99,7 +99,7 @@ def genTimestamp():
 
 
 def writeDataToFile():
-    with open('/root/datetime_data/typeall.csv', 'a') as f:
+    with open('/root/typeall.csv', 'a') as f:
         f.write(str(random.randint(1, 65000)) +
                 ',' +
                 genRandomUSAState() +
@@ -115,6 +115,8 @@ def writeDataToFile():
                 genTimestamp() +
                 ',' +
                 genFloat() +
+                ',' +
+                str(genDuration()) +
                 ',' +
                 str(genDuration()) +
                 ',' +
