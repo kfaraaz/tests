@@ -17,4 +17,6 @@ def generateDecimalValue(p,s):
     return generatePrecisionValue(p-s+1) + '.' + generateScaleValue(s+1)
     
     
+# To generate a DECIMAL value of the form
+# DECIMAL(14,3) => precision = 14 - 3 = 11 AND scale = 4    
 print generateDecimalValue(14,3)
