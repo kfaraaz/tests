@@ -3,6 +3,7 @@ import java.util.*;
 
 public class ReadFromFile {
 
+    // Brute force method to find the inversions in an array.
     static long getInvCount(int arr[], int n)
     {
         long inv_count = 0;
