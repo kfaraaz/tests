@@ -14,7 +14,7 @@ from random import randint
 # col_bigint
 def genRandomBigInt():
     """ Returns a random big integer value. """
-    return str(randint(1, 2147483648))
+    return str(randint(1, 2147483647))
 
 
 # col_date
@@ -22,7 +22,7 @@ def genDate():
     """ Returns a random date value in YYYY-MM-DD format
     Note that the day value will always be <= 28
     """
-    yr = randint(1940, 2015)
+    yr = randint(1940, 2017)
     month = randint(1, 12)
     day = randint(1, 28)
     rndmdate = datetime.date(yr, month, day)
@@ -39,7 +39,7 @@ def genTime():
     return str(HH) + ':' + str(MM) + ':' + str(SS)
 
 
-# col_varchar_65535
+# col_varchar
 def genVaryingLengthString():
     """ Returns a random variable length string of alpha numeric characters
     length of the random string could range from 1 - 256 characters
@@ -84,7 +84,7 @@ def genName():
 # col_double
 def genDouble():
     """ Returns a random floating point number """
-    return str(random.uniform(1, 65000))
+    return str(random.uniform(1, 1000000))
 
 
 def generatePrecisionValue(p):
@@ -106,7 +106,7 @@ def generateDecimalValue(p, s):
 
 
 def writeDataToFile():
-    with open('/Users/maprit/data4HashJoin.csv', 'a') as f:
+    with open('/Users/data4Tests.csv', 'a') as f:
         f.write(genRandomBigInt() +
                 ',' +
                 genRandomUSAState() +
